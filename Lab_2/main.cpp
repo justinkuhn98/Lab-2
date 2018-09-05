@@ -23,7 +23,11 @@ int main()
 
     }
     for ( int k = 0; k < 21; k++){
-        cout << setw(3) << k+4 << ": " << string(counts[k], 'X') << endl;
+        cout << setw(3) << k+4 << ": ";
+        for ( int l = 0; l < counts[k]; l++ ){
+            cout << "\u25a8";
         }
+        cout << endl;
+    }
     return 0;
 }
