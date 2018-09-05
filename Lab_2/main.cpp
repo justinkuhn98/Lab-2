@@ -5,29 +5,50 @@
 
 using namespace std;
 
+int roll();
+void printHistogram(int counts[]);
+
+
 int main()
 {
-    int rolls = 500;
-    int counts[21] = {0};
-    int num = 0;
+    int rolls;              //in
+    int counts[21] = {0}; //out
+    int num = 0;    //calc
+    int seed; // in
 
-    srand(time(0));
 
-    for ( int i = 0; i < 500; i++){
+
+    cout << "Enter the seed value: \n";
+    cin >> seed;
+
+    srand(seed);
+
+    cout << "Enter the number of Rolls: \n";
+    cin >> rolls;
+    cout << endl;
+
+
+    for ( int i = 0; i < rolls; i++){
         num = 0;
 
         for ( int j = 0; j < 4; j++ ){
-            num += (rand() % 6) + 1;
+            num += roll();
         }
         counts[num-4]++;
 
     }
-    for ( int k = 0; k < 21; k++){
-        cout << setw(3) << k+4 << ": ";
-        for ( int l = 0; l < counts[k]; l++ ){
-            cout << "\u25a8";
-        }
-        cout << endl;
-    }
+    printHistogram(counts);
+
     return 0;
+}
+
+int roll(){
+    return (rand() % 6) + 1;
+}
+
+void printHistogram(int counts[]){
+    for ( int k = 0; k < 21; k++){
+        cout << left;
+        cout << setw(2) << k+4 << ": " << string( counts[k], 'X') << endl;
+    }
 }
